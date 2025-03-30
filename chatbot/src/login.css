@@ -1,0 +1,58 @@
+/* Login Form Styling */
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group {
+    text-align: left;
+  }
+  
+  .form-control {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  .btn-primary {
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 10px;
+    transition: background 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+  
+  .alert {
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin-left: 80vh;
+  }
