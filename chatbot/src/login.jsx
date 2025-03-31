@@ -4,6 +4,7 @@ import { supabase } from "../supabaseClient";
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "./login.css"; // Import your custom CSS for styling
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +26,11 @@ function Login() {
       if (error) throw error;
 
       console.log("Login successful:", data);
-      navigate("/app");
+      
+      // Ensure authentication state is fully updated before navigating
+      await new Promise((resolve) => setTimeout(resolve, 500)); 
+      
+      window.location.href = "/app"; // Force a full page reload
     } catch (error) {
       setError(error.message || "An unexpected error occurred.");
     } finally {
