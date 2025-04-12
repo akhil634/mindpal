@@ -15,6 +15,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: rgba(36, 36, 36, 0.8) url('/public/images.jpeg') no-repeat center center fixed;
+  background-size: cover; /* Image covers the entire viewport */
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -22,14 +32,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -60,6 +62,10 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+  }
+  body {
+    background: rgba(255, 255, 255, 0.8) url('/public/images.jpeg') no-repeat center center fixed;
+    background-size: cover;
   }
   a:hover {
     color: #747bff;

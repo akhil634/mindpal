@@ -12,17 +12,41 @@ import SearchHistory from "./searchhistory.jsx";
 import Feedback from "./feedback.jsx";
 import Header from "./header.jsx";
 import Footer from "./footer.jsx";
+import AdminHome from "./admin/adminhome.jsx";
 
 const Main = () => {
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null); // Add state for role
   const [loading, setLoading] = useState(true); // Prevent flickering
   const location = useLocation();
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setUser(session ? session.user : null);
-      setLoading(false); // Done loading
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session) {
+          setUser(session.user);
+
+          // Fetch user role from profiles table
+          const { data: userData, error: userError } = await supabase
+            .from("profiles") // Replace with your table name
+            .select("role")
+            .eq("id", session.user.id)
+            .single();
+
+          if (userError) throw userError;
+
+          setRole(userData?.role || "user"); // Default to "user" if role is missing
+        } else {
+          setUser(null);
+          setRole(null);
+        }
+      } catch (error) {
+        console.error("Error fetching user role:", error.message);
+        setRole("user"); // Fallback to user role on error
+      } finally {
+        setLoading(false); // Done loading
+      }
     };
     checkAuth();
   }, []);
@@ -34,14 +58,14 @@ const Main = () => {
     <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       {user && <Header />} {/* Show header only if user is logged in */}
       <div style={{ display: "flex", flex: 1 }}>
-        {user && <Sidebar />} {/* Show sidebar only if user is logged in */}
-        <div 
-          style={{ 
+        {user && role !== "admin" && <Sidebar />} {/* Show sidebar only for non-admin users */}
+        <div
+          style={{
             flex: 1,
-            marginLeft: user ? "250px" : "0px", 
+            marginLeft: user && role !== "admin" ? "250px" : "0px", // No sidebar for admin
             marginTop: user ? "60px" : "0px", // Add margin for header when present
-            padding: "20px", 
-            width: "100%" 
+            padding: "20px",
+            width: "100%",
           }}
         >
           <Routes>
@@ -50,6 +74,11 @@ const Main = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="*" element={<Navigate to="/login" />} />
+              </>
+            ) : role === "admin" ? (
+              <>
+                <Route path="/adminhome" element={<AdminHome />} />
+                <Route path="*" element={<Navigate to="/adminhome" />} />
               </>
             ) : (
               <>

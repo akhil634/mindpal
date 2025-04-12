@@ -1,9 +1,22 @@
 /* App Styling */
+.container {
+  max-width: 600px;
+  margin-left: 60vh;
+  padding: 2rem;
+  background: rgba(216, 122, 122, 0.8) url('/public/.jpg') no-repeat center center; /* Background image from public folder */
+  background-size: cover; /* Image covers the container */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+
+/* Existing styles for app-container, in case they're used elsewhere */
 .app-container {
   max-width: 600px;
   margin-left: 60vh;
   padding: 2rem;
-  background: #d87a7a;
+  background: rgba(216, 122, 122, 0.8); /* Kept as fallback or for other components */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
