@@ -173,3 +173,33 @@
     font-size: 1.5rem;
   }
 }
+
+.password-requirements {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.password-requirements ul {
+  margin-top: 4px;
+  padding-left: 20px;
+}
+
+.requirement-met {
+  color: #2ecc71;
+}
+
+.requirement-met::before {
+  content: "✓ ";
+}
+
+.error-input {
+  border-color: #e74c3c;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
