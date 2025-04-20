@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +10,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -54,7 +53,7 @@ function Login() {
   };
 
   return (
-    <Container className="center-container" style={{ maxWidth: "400px" }}>
+    <Container className="center-container">
       <div>
         <h2 className="text-center">Login</h2>
         <Form onSubmit={handleLogin}>
@@ -90,6 +89,15 @@ function Login() {
             </Button>
           </div>
         </Form>
+        
+        <div className="signup-section">
+          <p>Don't have an account?</p>
+          <Link to="/signup">
+            <Button variant="outline-primary" className="signup-button">
+              Sign Up
+            </Button>
+          </Link>
+        </div>
       </div>
     </Container>
   );

@@ -11,6 +11,7 @@ function App() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [inMalayalam, setInMalayalam] = useState(false);
   const navigate = useNavigate();
   const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
@@ -110,7 +111,12 @@ function App() {
     setIsLoading(true);
     
     try {
-      const result = await model.generateContent(input);
+      let userQuestion = input;
+      if (inMalayalam) {
+        userQuestion = `${input} (Respond to me in Malayalam language)`;
+      }
+      
+      const result = await model.generateContent(userQuestion);
       const textResponse = await result.response.text();
       setResponse(textResponse || "No response from AI.");
 
@@ -153,6 +159,18 @@ function App() {
         >
           {isLoading ? "Thinking..." : "Send"}
         </button>
+      </div>
+      
+      <div className="language-toggle">
+        <label className="malayalam-option">
+          <input
+            type="checkbox"
+            checked={inMalayalam}
+            onChange={() => setInMalayalam(!inMalayalam)}
+            disabled={isLoading}
+          />
+          Respond in Malayalam
+        </label>
       </div>
       
       {response && (

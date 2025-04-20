@@ -13,6 +13,7 @@ import Feedback from "./feedback.jsx";
 import Header from "./header.jsx";
 import Footer from "./footer.jsx";
 import AdminHome from "./admin/adminhome.jsx";
+import AdminSidebar from "./admin/adminsidebar.jsx";
 
 const Main = () => {
   const [user, setUser] = useState(null);
@@ -58,11 +59,13 @@ const Main = () => {
     <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       {user && <Header />} {/* Show header only if user is logged in */}
       <div style={{ display: "flex", flex: 1 }}>
-        {user && role !== "admin" && <Sidebar />} {/* Show sidebar only for non-admin users */}
+        {user && role !== "admin" && <Sidebar />} {/* Show sidebar for non-admin users */}
+        {user && role === "admin" && <AdminSidebar />} {/* Show admin sidebar for admin users */}
+        
         <div
           style={{
             flex: 1,
-            marginLeft: user && role !== "admin" ? "250px" : "0px", // No sidebar for admin
+            marginLeft: user ? (role === "admin" ? "250px" : "250px") : "0px", // Adjust margin for sidebar
             marginTop: user ? "60px" : "0px", // Add margin for header when present
             padding: "20px",
             width: "100%",
@@ -78,6 +81,7 @@ const Main = () => {
             ) : role === "admin" ? (
               <>
                 <Route path="/adminhome" element={<AdminHome />} />
+                {/* Add more admin routes here as needed */}
                 <Route path="*" element={<Navigate to="/adminhome" />} />
               </>
             ) : (

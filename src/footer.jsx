@@ -10,7 +10,7 @@ const Footer = () => {
         color: '#ecf0f1',
         padding: '2rem 1rem',
         fontFamily: 'Arial, sans-serif',
-        borderTop: '4px solid #3498db',
+        borderTop: '4px solid rgb(2, 63, 104)',
         textAlign: 'center',
         width: '209vh', // Ensure full width
       }}
@@ -22,18 +22,18 @@ const Footer = () => {
         }}
       >
         {/* Company Name */}
-        <h3 style={{ marginBottom: '1rem', color: '#3498db' }}>Your Company</h3>
+        <h3 style={{ marginBottom: '1rem', color: 'rgb(2, 63, 104)' }}>MINDPAL</h3>
         <p style={{ fontSize: '0.9rem', margin: '0.5rem 0' }}>
-          © {currentYear} Your Company. All rights reserved.
+          © {currentYear} Mindpal. All rights reserved.
         </p>
 
         {/* Contact Info */}
         <div style={{ marginTop: '1rem' }}>
           <p style={{ fontSize: '0.9rem', margin: '0.5rem 0' }}>
-            Email: support@yourcompany.com
+            Email: mindpalsupport@gmail.com
           </p>
           <p style={{ fontSize: '0.9rem', margin: '0.5rem 0' }}>
-            Phone: (555) 123-4567
+            Phone: (91) 8075 290 893
           </p>
           <div style={{ marginTop: '1rem' }}>
             <a href="mailto:support@yourcompany.com" style={linkStyle}>
@@ -48,7 +48,7 @@ const Footer = () => {
 
 // Styles
 const linkStyle = {
-  color: '#3498db',
+  color: 'rgb(2, 63, 104)',
   textDecoration: 'none',
   fontSize: '0.9rem',
   transition: 'color 0.3s ease',

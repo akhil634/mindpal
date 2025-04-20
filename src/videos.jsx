@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import "./videos.css";
 
 const Videos = () => {
   const [videos, setVideos] = useState([]); // Store video list
-  const [selectedVideo, setSelectedVideo] = useState(null); // Store selected video URL
-  const [videoKey, setVideoKey] = useState(0); // Unique key to force re-render
+  const [selectedVideo, setSelectedVideo] = useState(null); // Store the single selected video
+  const [videoKey, setVideoKey] = useState(Date.now()); // Single key for the video player
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -30,27 +31,34 @@ const Videos = () => {
     const { data } = supabase.storage.from(bucketName).getPublicUrl(videoName);
 
     if (data) {
-      setSelectedVideo(null); // Reset before updating
-      setTimeout(() => {
-        setSelectedVideo(data.publicUrl);
-        setVideoKey((prevKey) => prevKey + 1); // Force re-render
-      }, 100); // Small delay to ensure proper re-render
+      // Set the new video and update the key to force a re-render
+      setSelectedVideo({url: data.publicUrl, name: videoName});
+      setVideoKey(Date.now());
     } else {
       console.error("❌ Failed to fetch video URL.");
     }
   };
+  
+  // Close the video player
+  const closeVideo = () => {
+    setSelectedVideo(null);
+  };
 
   return (
-    <div>
-      <h1>Videos</h1>
+    <div className="videos-container">
+      <h1 className="videos-title">Mental Health Videos</h1>
+      
       {videos.length === 0 ? (
-        <p>Loading videos...</p>
+        <p className="loading-message">Loading videos...</p>
       ) : (
-        <ul>
+        <ul className="videos-list">
           {videos.map((video) => (
-            <li key={video.name}>
-              <button onClick={() => fetchVideoUrl(video.name)}>
-                {video.name}
+            <li key={video.name} className="video-item">
+              <button 
+                className="video-button"
+                onClick={() => fetchVideoUrl(video.name)}
+              >
+                {video.name.replace(/\.[^/.]+$/, "").replaceAll("_", " ")}
               </button>
             </li>
           ))}
@@ -58,10 +66,25 @@ const Videos = () => {
       )}
 
       {selectedVideo && (
-        <div>
-          <h2>Now Playing</h2>
-          <video key={videoKey} controls width="600">
-            <source src={selectedVideo} type="video/mp4" />
+        <div className="video-player-container">
+          <div className="video-header">
+            <h3 className="video-title">
+              {selectedVideo.name.replace(/\.[^/.]+$/, "").replaceAll("_", " ")}
+            </h3>
+            <button 
+              className="close-video-btn" 
+              onClick={closeVideo}
+            >
+              ✕
+            </button>
+          </div>
+          <video 
+            key={videoKey} 
+            controls 
+            className="video-player"
+            autoPlay
+          >
+            <source src={selectedVideo.url} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
