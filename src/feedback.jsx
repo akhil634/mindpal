@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import "./feedback.css";
 
 const Feedback = () => {
   const [formData, setFormData] = useState({
@@ -67,71 +68,87 @@ const Feedback = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-xl">
-      <h2 className="text-2xl font-bold mb-4">Mental Health Feedback Form</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <label className="block">How would you rate your overall mental health in the past two weeks?</label>
-        <select name="mentalHealthRating" onChange={handleChange} className="border p-2 w-full">
-          <option value="">Select</option>
-          <option value="Poor">Poor</option>
-          <option value="Fair">Fair</option>
-          <option value="Good">Good</option>
-          <option value="Excellent">Excellent</option>
-        </select>
+    <div className="feedback-container">
+      <h2 className="feedback-title">Mental Health Feedback Form</h2>
+      <form onSubmit={handleSubmit} className="feedback-form">
+        <div className="form-group">
+          <label className="form-label">How would you rate your overall mental health in the past two weeks?</label>
+          <select name="mentalHealthRating" onChange={handleChange} className="form-select">
+            <option value="">Select</option>
+            <option value="Poor">Poor</option>
+            <option value="Fair">Fair</option>
+            <option value="Good">Good</option>
+            <option value="Excellent">Excellent</option>
+          </select>
+        </div>
 
-        <label className="block">Have you experienced frequent stress, anxiety, or sadness in the last month?</label>
-        <select name="stressFrequency" onChange={handleChange} className="border p-2 w-full">
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
+        <div className="form-group">
+          <label className="form-label">Have you experienced frequent stress, anxiety, or sadness in the last month?</label>
+          <select name="stressFrequency" onChange={handleChange} className="form-select">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
 
-        <label className="block">How often do you feel overwhelmed with daily tasks?</label>
-        <select name="overwhelmedFrequency" onChange={handleChange} className="border p-2 w-full">
-          <option value="">Select</option>
-          <option value="Never">Never</option>
-          <option value="Sometimes">Sometimes</option>
-          <option value="Often">Often</option>
-          <option value="Always">Always</option>
-        </select>
+        <div className="form-group">
+          <label className="form-label">How often do you feel overwhelmed with daily tasks?</label>
+          <select name="overwhelmedFrequency" onChange={handleChange} className="form-select">
+            <option value="">Select</option>
+            <option value="Never">Never</option>
+            <option value="Sometimes">Sometimes</option>
+            <option value="Often">Often</option>
+            <option value="Always">Always</option>
+          </select>
+        </div>
 
-        <label className="block">How comfortable are you in recognizing and understanding your emotions?</label>
-        <select name="emotionalAwareness" onChange={handleChange} className="border p-2 w-full">
-          <option value="">Select</option>
-          <option value="Not at all">Not at all</option>
-          <option value="Somewhat">Somewhat</option>
-          <option value="Very Comfortable">Very Comfortable</option>
-        </select>
+        <div className="form-group">
+          <label className="form-label">How comfortable are you in recognizing and understanding your emotions?</label>
+          <select name="emotionalAwareness" onChange={handleChange} className="form-select">
+            <option value="">Select</option>
+            <option value="Not at all">Not at all</option>
+            <option value="Somewhat">Somewhat</option>
+            <option value="Very Comfortable">Very Comfortable</option>
+          </select>
+        </div>
 
-        <label className="block">What activities help you manage stress and difficult emotions?</label>
-        <textarea name="copingMechanisms" onChange={handleChange} className="border p-2 w-full"></textarea>
+        <div className="form-group">
+          <label className="form-label">What activities help you manage stress and difficult emotions?</label>
+          <textarea name="copingMechanisms" onChange={handleChange} className="form-textarea"></textarea>
+        </div>
 
-        <label className="block">How often do you use healthy coping mechanisms like mindfulness or exercise?</label>
-        <select name="healthyCopingUsage" onChange={handleChange} className="border p-2 w-full">
-          <option value="">Select</option>
-          <option value="Never">Never</option>
-          <option value="Sometimes">Sometimes</option>
-          <option value="Often">Often</option>
-          <option value="Always">Always</option>
-        </select>
+        <div className="form-group">
+          <label className="form-label">How often do you use healthy coping mechanisms like mindfulness or exercise?</label>
+          <select name="healthyCopingUsage" onChange={handleChange} className="form-select">
+            <option value="">Select</option>
+            <option value="Never">Never</option>
+            <option value="Sometimes">Sometimes</option>
+            <option value="Often">Often</option>
+            <option value="Always">Always</option>
+          </select>
+        </div>
 
-        <label className="block">Has your mental health affected your productivity at work/school?</label>
-        <select name="productivityImpact" onChange={handleChange} className="border p-2 w-full">
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-          <option value="Sometimes">Sometimes</option>
-        </select>
+        <div className="form-group">
+          <label className="form-label">Has your mental health affected your productivity at work/school?</label>
+          <select name="productivityImpact" onChange={handleChange} className="form-select">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Sometimes">Sometimes</option>
+          </select>
+        </div>
 
-        <label className="block">How connected do you feel to friends and family?</label>
-        <select name="socialConnection" onChange={handleChange} className="border p-2 w-full">
-          <option value="">Select</option>
-          <option value="Not at all">Not at all</option>
-          <option value="Somewhat">Somewhat</option>
-          <option value="Very Connected">Very Connected</option>
-        </select>
+        <div className="form-group">
+          <label className="form-label">How connected do you feel to friends and family?</label>
+          <select name="socialConnection" onChange={handleChange} className="form-select">
+            <option value="">Select</option>
+            <option value="Not at all">Not at all</option>
+            <option value="Somewhat">Somewhat</option>
+            <option value="Very Connected">Very Connected</option>
+          </select>
+        </div>
 
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+        <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
   );

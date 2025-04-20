@@ -135,7 +135,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className="homecontainer">
       <ToastContainer />
       <h1>MindPal AI Chatbot</h1>
       <div className="input-container">

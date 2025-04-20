@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import "./searchhistory.css";
 
 const SearchHistory = ({ userId }) => {
   const [history, setHistory] = useState([]);
@@ -31,24 +32,24 @@ const SearchHistory = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-center">Search History</h2>
+    <div className="search-history-container">
+      <h2 className="search-history-title">Search History</h2>
       {history.length > 0 ? (
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse border border-gray-300 table-auto">
+        <div className="search-history-table-container">
+          <table className="search-history-table">
             <thead>
-              <tr className="bg-blue-600 text-white">
-                <th className="border border-gray-300 px-6 py-3 text-left">Prompt</th>
-                <th className="border border-gray-300 px-6 py-3 text-left">Response</th>
-                <th className="border border-gray-300 px-6 py-3 text-left">Time</th>
+              <tr>
+                <th>Prompt</th>
+                <th>Response</th>
+                <th>Time</th>
               </tr>
             </thead>
             <tbody>
               {history.map((item) => (
-                <tr key={item.id} className="odd:bg-gray-100 even:bg-white">
-                  <td className="border border-gray-300 px-6 py-3 break-words max-w-xl">{item.prompt}</td>
-                  <td className="border border-gray-300 px-6 py-3 break-words max-w-2xl">{item.response}</td>
-                  <td className="border border-gray-300 px-6 py-3 whitespace-nowrap">
+                <tr key={item.id}>
+                  <td className="prompt-cell">{item.prompt}</td>
+                  <td className="response-cell">{item.response}</td>
+                  <td className="time-cell">
                     {new Date(item.created_at).toLocaleString()}
                   </td>
                 </tr>
@@ -57,7 +58,7 @@ const SearchHistory = ({ userId }) => {
           </table>
         </div>
       ) : (
-        <p className="text-gray-500 text-center">No search history found.</p>
+        <p className="empty-message">No search history found.</p>
       )}
     </div>
   );
