@@ -21,7 +21,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: rgba(36, 36, 36, 0.8) url('/public/images.jpeg') no-repeat center center fixed;
+  background: rgba(36, 36, 36, 0.8) url('/images.jpeg') no-repeat center center fixed;
   background-size: cover; /* Image covers the entire viewport */
 }
 

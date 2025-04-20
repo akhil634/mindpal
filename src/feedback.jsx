@@ -263,6 +263,77 @@ const Feedback = () => {
           {formErrors.socialConnection && <p className="error-text">{formErrors.socialConnection}</p>}
         </div>
 
+        <div className="form-group">
+          <label className="form-label">
+            How comfortable are you talking about your mental health with others? *
+          </label>
+          <select 
+            name="talkingComfort" 
+            onChange={handleChange} 
+            className={`form-select ${formErrors.talkingComfort ? 'error' : ''}`}
+            value={formData.talkingComfort}
+            required
+          >
+            <option value="">Select</option>
+            <option value="Not at all">Not at all</option>
+            <option value="Somewhat">Somewhat</option>
+            <option value="Very Comfortable">Very Comfortable</option>
+          </select>
+          {formErrors.talkingComfort && <p className="error-text">{formErrors.talkingComfort}</p>}
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">
+            Have you ever sought professional help for mental health concerns? *
+          </label>
+          <select 
+            name="professionalHelp" 
+            onChange={handleChange} 
+            className={`form-select ${formErrors.professionalHelp ? 'error' : ''}`}
+            value={formData.professionalHelp}
+            required
+          >
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+          {formErrors.professionalHelp && <p className="error-text">{formErrors.professionalHelp}</p>}
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">
+            Do you know where to access mental health resources if needed? *
+          </label>
+          <select 
+            name="resourceAccess" 
+            onChange={handleChange} 
+            className={`form-select ${formErrors.resourceAccess ? 'error' : ''}`}
+            value={formData.resourceAccess}
+            required
+          >
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            <option value="Not sure">Not sure</option>
+          </select>
+          {formErrors.resourceAccess && <p className="error-text">{formErrors.resourceAccess}</p>}
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">
+            Any additional support or resources you'd like to see provided? *
+          </label>
+          <textarea 
+            name="additionalSupport" 
+            onChange={handleChange} 
+            className={`form-textarea ${formErrors.additionalSupport ? 'error' : ''}`}
+            value={formData.additionalSupport}
+            required
+          ></textarea>
+          {formErrors.additionalSupport && <p className="error-text">{formErrors.additionalSupport}</p>}
+        </div>
+
         <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>

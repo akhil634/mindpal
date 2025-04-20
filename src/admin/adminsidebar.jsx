@@ -11,11 +11,11 @@ const AdminSidebar = () => {
           <li className={location.pathname === "/adminhome" ? "active" : ""}>
             <Link to="/adminhome">📊 Dashboard</Link>
           </li>
-          <li className={location.pathname === "/adminhome/videos" ? "active" : ""}>
-            <Link to="/adminhome/videos">🎥 Videos</Link>
+          <li className={location.pathname === "/adminvideos" ? "active" : ""}>
+            <Link to="/adminvideos">🎥 Videos</Link>
           </li>
-          <li className={location.pathname === "/adminhome/feedback" ? "active" : ""}>
-            <Link to="/adminhome/feedback">💬 Feedback</Link>
+          <li className={location.pathname === "/adminfeedback" ? "active" : ""}>
+            <Link to="/adminfeedback">💬 Feedback</Link>
           </li>
         </ul>
       </nav>

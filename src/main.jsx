@@ -14,6 +14,9 @@ import Header from "./header.jsx";
 import Footer from "./footer.jsx";
 import AdminHome from "./admin/adminhome.jsx";
 import AdminSidebar from "./admin/adminsidebar.jsx";
+import AdminFeedback from "./admin/afeedback.jsx";
+import AdminVideo from "./admin/avideo.jsx";
+
 
 const Main = () => {
   const [user, setUser] = useState(null);
@@ -81,7 +84,8 @@ const Main = () => {
             ) : role === "admin" ? (
               <>
                 <Route path="/adminhome" element={<AdminHome />} />
-                {/* Add more admin routes here as needed */}
+                <Route path="/adminfeedback" element={<AdminFeedback />} />
+                <Route path="/adminvideos" element={<AdminVideo />} />
                 <Route path="*" element={<Navigate to="/adminhome" />} />
               </>
             ) : (
